@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="564.0" prefWidth="600.0" style="-fx-background-color: #87cbff;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="184.0" fitWidth="256.0" layoutX="172.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -30,11 +29,11 @@
             <ComboBox prefHeight="26.0" prefWidth="98.0" visibleRowCount="3" />
          </children>
       </HBox>
-      <Button contentDisplay="TOP" layoutX="26.0" layoutY="385.0" mnemonicParsing="false" prefHeight="165.0" prefWidth="187.0" style="-fx-background-color: #87cbff;" text="Order Up!">
+      <Button contentDisplay="TOP" layoutX="26.0" layoutY="343.0" mnemonicParsing="false" prefHeight="165.0" prefWidth="187.0" style="-fx-background-color: #87cbff;" text="Order Up!">
          <graphic>
-            <ImageView fitHeight="113.0" fitWidth="177.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="140.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../images/brickOven.png" />
+                  <Image url="@../../../../../../images/marioPizza.jpg" />
                </image>
             </ImageView>
          </graphic>
