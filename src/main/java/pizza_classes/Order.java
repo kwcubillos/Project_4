@@ -1,5 +1,6 @@
 package pizza_classes;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -7,7 +8,9 @@ import java.util.ArrayList;
  * @author Ethan Chang and Kevin Cubillos
  */
 public class Order {
-    private static final double SALES_TAX = 0.6625;
+    private static final String FORMAT = "##,##0.00";
+    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(FORMAT);
+    private static final double SALES_TAX = 0.06625;
     private static final double EMPTY_ORDER_TOTAL = 0.00;
     private String phoneNumber;
     private ArrayList<Pizza> pizzas;
@@ -52,33 +55,35 @@ public class Order {
      */
     public void addPizza(Pizza pizza) {
         pizzas.add(pizza);
+        currentPrice += pizza.price();
     }
 
     /**
      * remove a pizza from the order.
-     * @param pizza The pizza to remove.
+     * @param i The pizza to remove.
      */
-    public void removePizza(Pizza pizza) {
-        pizzas.remove(pizza);
-    }
-
-    /**
-     * Calculates the subtotal of the order.
-     */
-    public void calculateSubtotal() {
-        double price = EMPTY_ORDER_TOTAL;
-        for (Pizza pizza : pizzas) {
-            price += pizza.price();
+    public void removePizza(int i) {
+        Pizza removed = pizzas.remove(i);
+        currentPrice -= removed.price();
+        if(currentPrice < 0){
+            currentPrice = 0;
         }
-        this.currentPrice = price;
     }
 
     /**
      * Calculates the total of the order with tax.
      * @return The total of the order with tax applied.
      */
-    public double getFinalPrice() {
-        return currentPrice *= SALES_TAX;
+    public String getFinalPrice() {
+        return DECIMAL_FORMAT.format(currentPrice + currentPrice * SALES_TAX);
+    }
+
+    public String getSubtotal(){
+        return DECIMAL_FORMAT.format(currentPrice);
+    }
+
+    public String getTax(){
+        return DECIMAL_FORMAT.format(currentPrice * SALES_TAX);
     }
 
     public ArrayList<Pizza> getPizzas() {

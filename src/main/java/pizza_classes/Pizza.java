@@ -10,8 +10,7 @@ import java.util.ArrayList;
  */
 public abstract class Pizza {
 
-    private static final String FORMAT = "##,##0.00";
-    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(FORMAT);
+
     protected static final double SIZE_INCREASE_UPCHARGE = 2.00;
     protected static final double ADD_TOPPING_PRICE = 1.49;
     private static final int MAX_TOPPINGS = 7;
@@ -69,15 +68,13 @@ public abstract class Pizza {
         }
         return sb.toString();
     }
-
-
-
+    
     public ArrayList<Topping> getToppings(){
         return toppings;
     }
 
     public String priceFormatted(){
-        return DECIMAL_FORMAT.format(price());
+        return Order.DECIMAL_FORMAT.format(price());
     }
 
 }

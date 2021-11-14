@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import pizza_classes.*;
 
 import java.text.DecimalFormat;
@@ -25,13 +26,15 @@ public class CustomController{
     private ImageView pizzaImg;
     @FXML
     private TextField price;
+    @FXML
+    private Button orderButton;
 
     @FXML
     private void initialize(){
 
         ObservableList<Size> size = FXCollections.observableArrayList(Size.values());
         sizes.setItems(size);
-        sizes.getSelectionModel().select("small");
+        sizes.getSelectionModel().select(Size.SMALL);
         price.setText("0.00");
         ObservableList<Topping> toppings = FXCollections.observableArrayList(Topping.values());
         notAddedList.setItems(toppings);
@@ -65,6 +68,7 @@ public class CustomController{
     private void removeTopping(){
         Topping juice = (Topping) addedList.getSelectionModel().getSelectedItem();
         if(juice == null || requireToppings.contains(juice)){
+            menuController.showError("Cannot remove default toppings", "Remove only additional toppings");
             return;
         }
         currentPizza.removeTopping(juice);
@@ -84,5 +88,7 @@ public class CustomController{
     private void addToOrder(){
         System.out.println("added to order");
         menuController.currentOrder.addPizza(currentPizza);
+        Stage stage = (Stage) orderButton.getScene().getWindow();
+        stage.close();
     }
 }

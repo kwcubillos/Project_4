@@ -29,7 +29,7 @@
             <ComboBox fx:id="sizes" onAction="#updateSize" prefHeight="26.0" prefWidth="98.0" visibleRowCount="3" />
          </children>
       </HBox>
-      <Button contentDisplay="TOP" layoutX="26.0" layoutY="343.0" mnemonicParsing="false" onAction="#addToOrder" prefHeight="165.0" prefWidth="187.0" style="-fx-background-color: #87cbff;" text="Order Up!">
+      <Button fx:id="orderButton" contentDisplay="TOP" layoutX="26.0" layoutY="343.0" mnemonicParsing="false" onAction="#addToOrder" prefHeight="165.0" prefWidth="187.0" style="-fx-background-color: #87cbff;" text="Order Up!">
          <graphic>
             <ImageView fitHeight="140.0" fitWidth="137.0" pickOnBounds="true" preserveRatio="true">
                <image>

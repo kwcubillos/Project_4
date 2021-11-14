@@ -28,15 +28,7 @@ public class PepperoniPizza extends Pizza {
         }
         return price;
     }
-
-    /**
-     * Removes a topping from this pizza and deducts the price if possible
-     *
-     * @param topping the topping to remove
-     */
-    public void removeTopping(Topping topping) {
-        toppings.remove(topping);
-    }
+    
 
     @Override
     public String toString(){

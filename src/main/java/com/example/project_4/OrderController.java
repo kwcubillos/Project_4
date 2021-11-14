@@ -23,7 +23,7 @@ public class OrderController {
         menuController = controller;
         num.setText(menuController.num.getText());
         listPizzas();
-
+        updatePrice();
     }
 
     private void listPizzas(){
@@ -35,5 +35,24 @@ public class OrderController {
         }
 
         list.setItems(FXCollections.observableArrayList(pizzas));
+    }
+
+    private void updatePrice(){
+        subtotal.setText(menuController.currentOrder.getSubtotal());
+        tax.setText(menuController.currentOrder.getTax());
+        total.setText(menuController.currentOrder.getFinalPrice());
+    }
+
+    @FXML
+    private void removeSelectedPizza(){
+        int selectedIndex = list.getSelectionModel().getSelectedIndex();
+        list.getItems().remove(selectedIndex);
+        menuController.currentOrder.removePizza(selectedIndex);
+        updatePrice();
+    }
+
+    @FXML
+    private void placeOrder(){
+
     }
 }

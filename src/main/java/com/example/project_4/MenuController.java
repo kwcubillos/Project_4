@@ -60,7 +60,7 @@ public class MenuController {
         orderScreen.show();
     }
 
-    private void showError(String error, String prompt){
+    public void showError(String error, String prompt){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(error);
         alert.setHeaderText(prompt);
