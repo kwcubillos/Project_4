@@ -16,23 +16,23 @@
             <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="543.0" style="-fx-spacing: 20;">
                <children>
                   <Label text="Customer's Phone Number" />
-                  <TextField />
+                  <TextField fx:id="num" editable="false" />
                </children>
             </HBox>
-            <ListView prefHeight="187.0" prefWidth="543.0" />
+            <ListView fx:id="list" prefHeight="187.0" prefWidth="543.0" />
             <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="543.0" style="-fx-spacing: 10;">
                <children>
                   <Label text="Subtotal " />
-                  <TextField prefHeight="26.0" prefWidth="105.0" />
+                  <TextField fx:id="subtotal" prefHeight="26.0" prefWidth="105.0" />
                   <Label text="Sales Tax" />
-                  <TextField prefHeight="26.0" prefWidth="107.0" />
+                  <TextField fx:id="tax" prefHeight="26.0" prefWidth="107.0" />
                   <Button mnemonicParsing="false" text="Remove Pizza" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="543.0" style="-fx-spacing: 30;">
                <children>
                   <Label text="Order Total" />
-                  <TextField prefHeight="26.0" prefWidth="228.0" />
+                  <TextField fx:id="total" prefHeight="26.0" prefWidth="228.0" />
                   <Button mnemonicParsing="false" text="Place Order" />
                </children>
             </HBox>

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class Order {
     private static final double SALES_TAX = 0.6625;
     private static final double EMPTY_ORDER_TOTAL = 0.00;
-    private int phoneNumber;
+    private String phoneNumber;
     private ArrayList<Pizza> pizzas;
     private double currentPrice;
 
@@ -17,7 +17,7 @@ public class Order {
      * Constructor for Order.
      * @param phoneNumber The phone number of the customer.
      */
-    public Order(int phoneNumber) {
+    public Order(String phoneNumber) {
         this.phoneNumber = phoneNumber;
         this.pizzas = new ArrayList<>();
         this.currentPrice = EMPTY_ORDER_TOTAL;
@@ -27,7 +27,7 @@ public class Order {
      * Gets the phone number of the customer.
      * @return The phone number of the customer.
      */
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -37,10 +37,13 @@ public class Order {
      */
     @Override
     public String toString() {
-        return "Order{" +
-                "phoneNumber=" + phoneNumber +
-                ", pizzas=" + pizzas +
-                '}';
+        StringBuilder sb = new StringBuilder();
+        sb.append("Phone Number: " + phoneNumber);
+        for (Pizza pizza : pizzas) {
+            sb.append("; " + pizza.toString());
+        }
+        sb.append("; " + "Total: " + getFinalPrice());
+        return sb.toString();
     }
 
     /**
@@ -76,5 +79,9 @@ public class Order {
      */
     public double getFinalPrice() {
         return currentPrice *= SALES_TAX;
+    }
+
+    public ArrayList<Pizza> getPizzas() {
+        return pizzas;
     }
 }

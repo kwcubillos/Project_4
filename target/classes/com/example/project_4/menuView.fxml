@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -10,16 +11,23 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="661.0" prefWidth="726.0" style="-fx-background-color: ff5566;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_4.MenuController">
+   <top>
+      <Label text="Juicey Pizza" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <font>
+            <Font name="Cookie-Regular" size="55.0" />
+         </font>
+      </Label>
+   </top>
    <center>
       <HBox prefHeight="584.0" prefWidth="726.0" style="-fx-spacing: 150;" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-translate-x: 20; -fx-spacing: 5;">
                <children>
-                  <Button fx:id="delButton" contentDisplay="TOP" mnemonicParsing="false" text="Deluxe">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#setUpPizza" text="Deluxe">
                      <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="delPic" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../images/deluxePizza.jpg" />
+                              <Image url="@../../../images/deluxePizza.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -27,11 +35,11 @@
                         <Font name="Cookie-Regular" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="hawButton" contentDisplay="TOP" mnemonicParsing="false" text="Hawaiian">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#setUpPizza" text="Hawaiian">
                      <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="hawPic" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../images/hawaiianPizza.jpg" />
+                              <Image url="@../../../images/hawaiianPizza.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -39,11 +47,11 @@
                         <Font name="Cookie-Regular" size="21.0" />
                      </font>
                   </Button>
-                  <Button fx:id="pepButton" contentDisplay="TOP" mnemonicParsing="false" text="Pepperoni">
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#setUpPizza" text="Pepperoni">
                      <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="pepPic" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../images/pepperoniPizza.jpg" />
+                              <Image url="@../../../images/pepperoniPizza.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -55,12 +63,16 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="469.0" prefWidth="256.0" style="-fx-spacing: 30; -fx-padding: 10;">
                <children>
-                  <TextField alignment="CENTER" prefHeight="26.0" prefWidth="302.0" promptText="Customer Phone Number" style="-fx-background-color: ff8793;" />
-                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="146.0" prefWidth="183.0" text="Current Order">
+                  <HBox>
+                     <children>
+                        <TextField fx:id="num" alignment="CENTER" prefHeight="26.0" prefWidth="302.0" promptText="Customer Phone Number" />
+                     </children>
+                  </HBox>
+                  <Button contentDisplay="TOP" mnemonicParsing="false" onAction="#showOrder" prefHeight="146.0" prefWidth="183.0" text="Current Order">
                      <graphic>
                         <ImageView fitHeight="138.0" fitWidth="207.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../images/destroyedPizza.jpg" />
+                              <Image url="@../../../images/destroyedPizza.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
@@ -72,7 +84,7 @@
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../../../../../../images/pileOfPizza.jpg" />
+                              <Image url="@../../../images/pileOfPizza.jpg" />
                            </image>
                         </ImageView>
                      </graphic>

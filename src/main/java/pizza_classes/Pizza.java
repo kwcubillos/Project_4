@@ -1,5 +1,7 @@
 package pizza_classes;
 
+import java.lang.reflect.Array;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 /**
@@ -8,24 +10,25 @@ import java.util.ArrayList;
  */
 public abstract class Pizza {
 
-    private static final double SIZE_INCREASE_UPCHARGE = 2.00;
+    private static final String FORMAT = "##,##0.00";
+    public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(FORMAT);
+    protected static final double SIZE_INCREASE_UPCHARGE = 2.00;
     protected static final double ADD_TOPPING_PRICE = 1.49;
     private static final int MAX_TOPPINGS = 7;
     protected ArrayList<Topping> toppings = new ArrayList<Topping>();
     protected Size size;
-    protected double price;
 
     public abstract double price();
 
     /**
      * Adds a topping to the pizza.
+     *
      * @param topping The topping to be added.
      * @return True if topping was added, false if topping was not added.
      */
     public boolean addTopping(Topping topping){
         if(toppings.size() < MAX_TOPPINGS){
             toppings.add(topping);
-            price += ADD_TOPPING_PRICE;
             return true;
         }
         else{
@@ -43,46 +46,38 @@ public abstract class Pizza {
     }
 
     /**
-     * Upgrades the size of this pizza
-     *
-     * @param size the current size of this pizza
-     * @return true if possible, false otherwise
+     * Changes the size of the pizza.
+     * @param size The new size of the pizza.
      */
-    public boolean upgradeSize(Size size){
-        switch(size){
-            case SMALL:
-                this.size = Size.MEDIUM;
-                this.price += SIZE_INCREASE_UPCHARGE;
-                return true;
-            case MEDIUM:
-                this.size = Size.LARGE;
-                this.price += SIZE_INCREASE_UPCHARGE;
-                return true;
-            case LARGE:
-                return false;
-        }
-        return false;
+    public void setSize(Size size){
+        this.size = size;
     }
 
     /**
-     * Downgrades the size of this pizza
+     *This builds a string representation of the pizza with the toppings
      *
-     * @param size the current size of this pizza
-     * @return true if possible, false otherwise
+     * @return a string representation of the pizza
      */
-    public boolean downgradeSize(Size size){
-        switch(size){
-            case SMALL:
-                return false;
-            case MEDIUM:
-                this.size = Size.SMALL;
-                this.price -= SIZE_INCREASE_UPCHARGE;
-                return true;
-            case LARGE:
-                this.size = Size.MEDIUM;
-                this.price -= SIZE_INCREASE_UPCHARGE;
-                return true;
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+        sb.append("pizza: ");
+        sb.append(size.toString() + ", ");
+        for(Topping topping : toppings){
+            sb.append(topping.toString());
+            sb.append(", ");
         }
-        return false;
+        return sb.toString();
     }
+
+
+
+    public ArrayList<Topping> getToppings(){
+        return toppings;
+    }
+
+    public String priceFormatted(){
+        return DECIMAL_FORMAT.format(price());
+    }
+
 }
