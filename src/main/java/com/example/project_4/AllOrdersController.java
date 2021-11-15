@@ -10,22 +10,35 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pizza_classes.Order;
 import pizza_classes.Pizza;
-
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * The JavaFX controller of allOrdersView GUI.
+ * Helps set up and manage the orders placed.
+ * @author Kevin Cubillos, Ethan Chang
+ */
 public class AllOrdersController {
 
+    /** The reference to the menu controller to access orders **/
     private MenuController menuController;
+    /** ComboBox from GUI. **/
     @FXML
     private ComboBox orderBox;
+    /** TextField from GUI. **/
     @FXML
     private TextField orderTotal;
+    /** ListView from GUI. **/
     @FXML
     private ListView list;
+    /** Button box from GUI. **/
     @FXML
     private Button cancelButton;
 
+    /**
+     * Sets up the initial screen.
+     * @param controller the MenuController to store its reference
+     */
     protected void setUpScreen(MenuController controller){
         menuController = controller;
         orderBox.setItems(FXCollections.observableArrayList(menuController.orders.getPhoneNumbers()));
@@ -33,6 +46,9 @@ public class AllOrdersController {
         showPizzas();
     }
 
+    /**
+     * Populates the ListView with all pizzas from selected order.
+     */
     private void showPizzas(){
         Order order = menuController.orders.getOrder(orderBox.getSelectionModel().getSelectedIndex());
         ArrayList<String> pizzas = new ArrayList<>();
@@ -43,6 +59,10 @@ public class AllOrdersController {
         orderTotal.setText("$" + order.getFinalPrice());
     }
 
+    /**
+     * Updates information on screen based on new selected order.
+     * The window is closed when all orders have been cancelled.
+     */
     @FXML
     private void showChosenOrder(){
         if(orderBox.getSelectionModel().getSelectedIndex() >= 0){
@@ -53,6 +73,9 @@ public class AllOrdersController {
         }
     }
 
+    /**
+     * Cancels an order and removes it from the list of orders.
+     */
     @FXML
     private void cancelOrder(){
         int index = orderBox.getSelectionModel().getSelectedIndex();
@@ -60,6 +83,9 @@ public class AllOrdersController {
         menuController.orders.removeOrder(index);
     }
 
+    /**
+     * Lets the user choose a file to export data of all orders.
+     */
     @FXML
     private void exportOrders(){
         FileChooser chooser = new FileChooser();

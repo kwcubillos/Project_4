@@ -2,36 +2,47 @@ package com.example.project_4;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import pizza_classes.*;
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-
+/**
+ * The JavaFx controller of customView GUI.
+ * Manages the customization of a pizza.
+ * @author Kevin Cubillos, Ethan Chang
+ */
 public class CustomController{
+    /** The required toppings of the given pizza. **/
     private ArrayList<Topping> requireToppings  = new ArrayList<>();
+    /** The pizza that is current being made. **/
     private Pizza currentPizza;
+    /** The reference to the menu controller to access current order. **/
     private MenuController menuController;
+    /** ListViews from the GUI. **/
     @FXML
     private ListView notAddedList, addedList;
+    /** ComboBox from the GUI. **/
     @FXML
     private ComboBox sizes;
+    /** ImageView from the GUI. **/
     @FXML
     private ImageView pizzaImg;
+    /** TextField from the GUI. **/
     @FXML
     private TextField price;
+    /** Button from the GUI. **/
     @FXML
     private Button orderButton;
 
+    /**
+     * Sets up the initial screen.
+     */
     @FXML
     private void initialize(){
-
         ObservableList<Size> size = FXCollections.observableArrayList(Size.values());
         sizes.setItems(size);
         sizes.getSelectionModel().select(Size.SMALL);
@@ -40,6 +51,13 @@ public class CustomController{
         notAddedList.setItems(toppings);
     }
 
+    /**
+     * Updates screen to the specific pizza.
+     * Image and toppings are updated to corresponding pizza.
+     * @param controller MenuController reference
+     * @param flavor the type of pizza flavor
+     * @param img the image of pizza flavor
+     */
     protected void setUpScreen(MenuController controller, String flavor, Image img){
         menuController = controller;
         ArrayList<Topping> toppings;
@@ -52,6 +70,9 @@ public class CustomController{
         price.setText(currentPizza.priceFormatted());
     }
 
+    /**
+     * Adds a topping to the pizza and updates price and GUI.
+     */
     @FXML
     private void addTopping(){
         Topping juice = (Topping) notAddedList.getSelectionModel().getSelectedItem();
@@ -64,6 +85,10 @@ public class CustomController{
         price.setText(currentPizza.priceFormatted());
     }
 
+    /**
+     * Removes a topping from the pizza and updates GUI.
+     * Error is shown when a required topping is attempted to be removed.
+     */
     @FXML
     private void removeTopping(){
         Topping juice = (Topping) addedList.getSelectionModel().getSelectedItem();
@@ -77,6 +102,9 @@ public class CustomController{
         price.setText(currentPizza.priceFormatted());
     }
 
+    /**
+     * Updates the size of the pizza and updates GUI.
+     */
     @FXML
     private void updateSize(){
         Size newSize = (Size) sizes.getSelectionModel().getSelectedItem();
@@ -84,6 +112,9 @@ public class CustomController{
         price.setText(currentPizza.priceFormatted());
     }
 
+    /**
+     * Adds the pizza to the current order and closes the window.
+     */
     @FXML
     private void addToOrder(){
         menuController.currentOrder.addPizza(currentPizza);

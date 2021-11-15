@@ -8,12 +8,20 @@ import java.util.ArrayList;
  * @author Ethan Chang and Kevin Cubillos
  */
 public class Order {
+
+    /** The dollar format. **/
     private static final String FORMAT = "##,##0.00";
+    /** Formatter that formats a number to the dollar format. **/
     public static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat(FORMAT);
+    /** Sales tax amount. **/
     private static final double SALES_TAX = 0.06625;
+    /** When an order is empty. **/
     private static final double EMPTY_ORDER_TOTAL = 0.00;
+    /** Phone number with the order. **/
     private String phoneNumber;
+    /** List of pizzas with the order. **/
     private ArrayList<Pizza> pizzas;
+    /** Current price of order. **/
     private double currentPrice;
 
     /**
@@ -41,13 +49,13 @@ public class Order {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Phone Number: " + phoneNumber + "\n");
+        sb.append("Phone Number: ").append(phoneNumber).append("\n");
         for (Pizza pizza : pizzas) {
-            sb.append(pizza.toString() + "\n");
+            sb.append(pizza.toString()).append("\n");
         }
-        sb.append("Amount of Pizzas: " + pizzas.size() + "\n");
-        sb.append("Subtotal: $" + getSubtotal() + "\t Sales Tax: $" + getTax() + "\n");
-        sb.append("Total: $" + getFinalPrice() + "\n");
+        sb.append("Amount of Pizzas: ").append(pizzas.size()).append("\n");
+        sb.append("Subtotal: $").append(getSubtotal()).append("\t Sales Tax: $").append(getTax()).append("\n");
+        sb.append("Total: $").append(getFinalPrice()).append("\n");
         return sb.toString();
     }
 
@@ -61,7 +69,7 @@ public class Order {
     }
 
     /**
-     * remove a pizza from the order.
+     * Remove a pizza from the order.
      * @param i The pizza to remove.
      */
     public void removePizza(int i) {
@@ -80,18 +88,34 @@ public class Order {
         return DECIMAL_FORMAT.format(currentPrice + currentPrice * SALES_TAX);
     }
 
+    /**
+     * Get the subtotal of order.
+     * @return subtotal
+     */
     public String getSubtotal(){
         return DECIMAL_FORMAT.format(currentPrice);
     }
 
+    /**
+     * Get the sales tax total of order.
+     * @return amount of sales tax
+     */
     public String getTax(){
         return DECIMAL_FORMAT.format(currentPrice * SALES_TAX);
     }
 
+    /**
+     * Get the list of pizzas from order.
+     * @return list of pizzas
+     */
     public ArrayList<Pizza> getPizzas() {
         return pizzas;
     }
 
+    /**
+     * Get the amount of pizzas in order.
+     * @return amount of pizzas
+     */
     public int size(){
         return pizzas.size();
     }

@@ -7,23 +7,34 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import pizza_classes.Order;
 import pizza_classes.StoreOrders;
-
 import java.io.IOException;
 
+/**
+ * The JavaFx controller of menuView GUI.
+ * The home window that user sees first.
+ * @author Kevin Cubillos, Ethan Chang
+ */
 public class MenuController {
 
+    /** The list of orders to be managed. **/
     protected StoreOrders orders = new StoreOrders();
+    /** The current order being handled. **/
     protected Order currentOrder;
+    /** TextField from GUI. **/
     @FXML
     protected TextField num;
 
+    /**
+     * Sets up the pizza customization screen with a valid customer phone number.
+     * @param event Event caused by one of the pizza buttons
+     * @throws IOException thrown for any IO errors
+     */
     @FXML
     private void setUpPizza(ActionEvent event) throws IOException {
         if(!validNumber()){
@@ -37,7 +48,7 @@ public class MenuController {
             return;
         }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("customView.fxml"));
-        Parent root = (Parent) loader.load();
+        Parent root = loader.load();
         CustomController customView = loader.getController();
         Button selected = ((Button) event.getSource());
         Image chicken = ((ImageView) selected.getGraphic()).getImage();
@@ -47,6 +58,10 @@ public class MenuController {
         poop.show();
     }
 
+    /**
+     * Sets up the order handler screen.
+     * @throws IOException thrown for any IO errors
+     */
     @FXML
     private void showOrder() throws IOException {
         if(!validNumber()){
@@ -61,7 +76,7 @@ public class MenuController {
             return;
         }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("orderView.fxml"));
-        Parent root = (Parent) loader.load();
+        Parent root = loader.load();
         OrderController orderView = loader.getController();
         orderView.setUpScreen(this);
         Stage orderScreen = new Stage();
@@ -69,6 +84,10 @@ public class MenuController {
         orderScreen.show();
     }
 
+    /**
+     * Sets up the store orders screen.
+     * @throws IOException thrown for any IO errors
+     */
     @FXML
     private void showStoreOrders() throws IOException {
         if(orders.getSize() == 0){
@@ -76,7 +95,7 @@ public class MenuController {
             return;
         }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("allOrdersView.fxml"));
-        Parent root = (Parent) loader.load();
+        Parent root = loader.load();
         AllOrdersController allOrdersView = loader.getController();
         allOrdersView.setUpScreen(this);
         Stage storeOrdersScreen = new Stage();
@@ -84,6 +103,11 @@ public class MenuController {
         storeOrdersScreen.show();
     }
 
+    /**
+     * Shows an error on the GUI.
+     * @param error Reason for error
+     * @param prompt What the user should do
+     */
     public void showError(String error, String prompt){
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(error);
@@ -91,6 +115,11 @@ public class MenuController {
         alert.showAndWait();
     }
 
+    /**
+     * Checks if customer phone number is valid.
+     * Needs to be a 10-digit number.
+     * @return true if valid, false otherwise
+     */
     private boolean validNumber(){
         try{
             if(num == null || num.getText().length() != 10){
@@ -105,6 +134,5 @@ public class MenuController {
         }
         return true;
     }
-
 
 }

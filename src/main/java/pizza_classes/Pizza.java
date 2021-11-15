@@ -6,22 +6,29 @@ import java.util.ArrayList;
 
 /**
  * This class represents a Pizza.
- * @author Ethan Chang, Kevin Cubillos;
+ * @author Kevin Cubillos, Ethan Chang
  */
 public abstract class Pizza {
 
-
+    /** The amount of price upcharge for a size increase. **/
     protected static final double SIZE_INCREASE_UPCHARGE = 2.00;
+    /** Price of an additional topping. **/
     protected static final double ADD_TOPPING_PRICE = 1.49;
+    /** Max amount of toppings a pizza can have. **/
     private static final int MAX_TOPPINGS = 7;
-    protected ArrayList<Topping> toppings = new ArrayList<Topping>();
+    /** The list of toppings currently with pizza. **/
+    protected ArrayList<Topping> toppings = new ArrayList<>();
+    /** Current size of pizza. **/
     protected Size size;
 
+    /**
+     * Abstract method implemented by pizza flavor classes to calculate the price.
+     * @return the price of the pizza
+     */
     public abstract double price();
 
     /**
      * Adds a topping to the pizza.
-     *
      * @param topping The topping to be added.
      * @return True if topping was added, false if topping was not added.
      */
@@ -37,7 +44,6 @@ public abstract class Pizza {
 
     /**
      * Removes a topping from this pizza
-     * 
      * @param topping the topping to remove
      */
     public void removeTopping(Topping topping){
@@ -54,25 +60,32 @@ public abstract class Pizza {
 
     /**
      *This builds a string representation of the pizza with the toppings
-     *
      * @return a string representation of the pizza
      */
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
         sb.append("Pizza: ");
-        sb.append(size.toString() + ", ");
-        for(int i = 0; i < toppings.size(); i++){
-            sb.append(toppings.get(i) + ", ");
+        sb.append(size.toString()).append(", ");
+        for (Topping topping : toppings) {
+            sb.append(topping).append(", ");
         }
-        sb.append("Cost: $" + priceFormatted());
+        sb.append("Cost: $").append(priceFormatted());
         return sb.toString();
     }
-    
+
+    /**
+     * Getter for the list of toppings.
+     * @return list of toppings
+     */
     public ArrayList<Topping> getToppings(){
         return toppings;
     }
 
+    /**
+     * Gives the price in dollar format.
+     * @return dollar formatted price
+     */
     public String priceFormatted(){
         return Order.DECIMAL_FORMAT.format(price());
     }

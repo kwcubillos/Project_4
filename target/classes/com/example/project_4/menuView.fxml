@@ -80,7 +80,7 @@
                         <Font name="Cookie-Regular" size="21.0" />
                      </font>
                   </Button>
-                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="158.0" prefWidth="72.0" text="Store Orders">
+                  <Button alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" onAction="#showStoreOrders" prefHeight="158.0" prefWidth="72.0" text="Store Orders">
                      <graphic>
                         <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                            <image>

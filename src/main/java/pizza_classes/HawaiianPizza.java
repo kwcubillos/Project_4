@@ -1,16 +1,17 @@
 package pizza_classes;
 
 /**
- *
- * @author Ethan Chang and Kevin Cubillos
+ * Hawaiian pizza flavor which inherits the pizza class.
+ * @author Kevin Cubillos, Ethan Chang
  */
 public class HawaiianPizza extends Pizza {
-
+    /** Amount of require toppings needed. **/
     private static final int HAWAIIAN_TOPPING_COUNT = 2;
+    /** Initial price of hawaiian pizza. **/
     private static final double HAWAIIAN_INIT_PRICE = 10.99;
 
     /**
-     * Constructor for HawaiianPizza
+     * Makes an instance of HawaiianPizza starting with all required toppings and size small.
      */
     public HawaiianPizza() {
         toppings.add(Topping.HAM);
@@ -19,9 +20,8 @@ public class HawaiianPizza extends Pizza {
     }
 
     /**
-     * Returns the number of toppings for this pizza
-     *
-     * @return the number of toppings for this pizza
+     * Calculates the price of pizza based on given toppings and size.
+     * @return the price of the pizza
      */
     public double price(){
         double price = HAWAIIAN_INIT_PRICE;
@@ -42,6 +42,10 @@ public class HawaiianPizza extends Pizza {
         return price;
     }
 
+    /**
+     * String representation of HawaiianPizza.
+     * @return the string representation
+     */
     @Override
     public String toString(){
         return "Hawaiian " + super.toString();

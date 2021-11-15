@@ -5,9 +5,10 @@ import java.util.ArrayList;
 
 /**
  * This class holds all the orders that have been placed.
- * @author Ethan Chang and Kevin Cubillos
+ * @author Kevin Cubillos, Ethan Chang
  */
 public class StoreOrders {
+    /** The list of orders. **/
     private ArrayList<Order> orders;
 
     /**
@@ -49,14 +50,14 @@ public class StoreOrders {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Order order : orders) {
-            sb.append(order.toString() + "\n");
+            sb.append(order.toString()).append("\n");
         }
         return sb.toString();
     }
 
     /**
-     * This method saves the orders to a file.
-     *
+     * This method saves the orders at the given file location.
+     * @param file the file to be edited
      */
     public void export(File file) {
         try {
@@ -72,9 +73,14 @@ public class StoreOrders {
         }
     }
 
+    /**
+     * Checks if a customer already has an order.
+     * @param num phone number of target customer
+     * @return true if customer has an order, false otherwise
+     */
     public boolean contains(String num){
-        for(int i = 0; i < orders.size(); i++){
-            if(num.equals(orders.get(i).getPhoneNumber())){
+        for (Order order : orders) {
+            if (num.equals(order.getPhoneNumber())) {
                 return true;
             }
         }
@@ -82,18 +88,31 @@ public class StoreOrders {
         return false;
     }
 
+    /**
+     * Get order at a given index.
+     * @param index index value
+     * @return Order object at index
+     */
     public Order getOrder(int index){
         return orders.get(index);
     }
 
+    /**
+     * Get list of all phone numbers.
+     * @return list of Strings of phone numbers
+     */
     public ArrayList<String> getPhoneNumbers(){
         ArrayList<String> numbers = new ArrayList<>();
-        for(int i = 0; i < orders.size(); i++){
-            numbers.add(orders.get(i).getPhoneNumber());
+        for (Order order : orders) {
+            numbers.add(order.getPhoneNumber());
         }
         return numbers;
     }
 
+    /**
+     * Get amount of orders currently placed.
+     * @return amount of orders
+     */
     public int getSize(){
         return orders.size();
     }
