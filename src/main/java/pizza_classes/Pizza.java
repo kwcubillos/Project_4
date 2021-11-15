@@ -60,12 +60,12 @@ public abstract class Pizza {
     @Override
     public String toString(){
         StringBuilder sb = new StringBuilder();
-        sb.append("pizza: ");
+        sb.append("Pizza: ");
         sb.append(size.toString() + ", ");
-        for(Topping topping : toppings){
-            sb.append(topping.toString());
-            sb.append(", ");
+        for(int i = 0; i < toppings.size(); i++){
+            sb.append(toppings.get(i) + ", ");
         }
+        sb.append("Cost: $" + priceFormatted());
         return sb.toString();
     }
     

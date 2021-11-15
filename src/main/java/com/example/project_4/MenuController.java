@@ -29,12 +29,13 @@ public class MenuController {
         if(!validNumber()){
             return;
         }
-        currentOrder = orders.findOrder(num.getText());
-        if(currentOrder == null){
+        if(currentOrder == null || !currentOrder.getPhoneNumber().equals(num.getText())){
             currentOrder = new Order(num.getText());
-            orders.addOrder(currentOrder);
         }
-
+        if(orders.contains(currentOrder.getPhoneNumber())){
+            showError("Customer already has an order", "Make sure customer does not have an order yet");
+            return;
+        }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("customView.fxml"));
         Parent root = (Parent) loader.load();
         CustomController customView = loader.getController();
@@ -51,6 +52,14 @@ public class MenuController {
         if(!validNumber()){
             return;
         }
+        if(currentOrder == null){
+            showError("No Current Order", "Make sure to add pizzas to order first.");
+            return;
+        }
+        if(orders.contains(currentOrder.getPhoneNumber())){
+            showError("Customer already has an order", "Make sure customer does not have an order yet");
+            return;
+        }
         FXMLLoader loader = new FXMLLoader(getClass().getResource("orderView.fxml"));
         Parent root = (Parent) loader.load();
         OrderController orderView = loader.getController();
@@ -58,6 +67,21 @@ public class MenuController {
         Stage orderScreen = new Stage();
         orderScreen.setScene(new Scene(root));
         orderScreen.show();
+    }
+
+    @FXML
+    private void showStoreOrders() throws IOException {
+        if(orders.getSize() == 0){
+            showError("No Orders", "Make sure there are orders placed.");
+            return;
+        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("allOrdersView.fxml"));
+        Parent root = (Parent) loader.load();
+        AllOrdersController allOrdersView = loader.getController();
+        allOrdersView.setUpScreen(this);
+        Stage storeOrdersScreen = new Stage();
+        storeOrdersScreen.setScene(new Scene(root));
+        storeOrdersScreen.show();
     }
 
     public void showError(String error, String prompt){
@@ -69,7 +93,6 @@ public class MenuController {
 
     private boolean validNumber(){
         try{
-            System.out.println(num.getText().length());
             if(num == null || num.getText().length() != 10){
                 showError("Not a number", "Please enter a valid number.");
                 return false;

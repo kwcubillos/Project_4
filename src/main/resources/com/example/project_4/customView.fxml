@@ -43,8 +43,8 @@
       </Button>
       <ListView fx:id="notAddedList" layoutX="238.0" layoutY="293.0" prefHeight="200.0" prefWidth="124.0" />
       <ListView fx:id="addedList" layoutX="462.0" layoutY="293.0" prefHeight="200.0" prefWidth="124.0" />
-      <Button layoutX="396.0" layoutY="334.0" mnemonicParsing="false" onAction="#addTopping" text="add" />
-      <Button layoutX="386.0" layoutY="425.0" mnemonicParsing="false" onAction="#removeTopping" text="remove" />
+      <Button layoutX="389.0" layoutY="331.0" mnemonicParsing="false" onAction="#addTopping" text="add &gt;" />
+      <Button layoutX="379.0" layoutY="425.0" mnemonicParsing="false" onAction="#removeTopping" text="&lt; remove" />
       <Label layoutX="379.0" layoutY="242.0" text="Toppings">
          <font>
             <Font name="Cookie-Regular" size="26.0" />

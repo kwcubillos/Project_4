@@ -86,7 +86,6 @@ public class CustomController{
 
     @FXML
     private void addToOrder(){
-        System.out.println("added to order");
         menuController.currentOrder.addPizza(currentPizza);
         Stage stage = (Stage) orderButton.getScene().getWindow();
         stage.close();

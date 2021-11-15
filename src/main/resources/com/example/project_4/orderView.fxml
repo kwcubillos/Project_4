@@ -17,6 +17,7 @@
                <children>
                   <Label text="Customer's Phone Number" />
                   <TextField fx:id="num" editable="false" />
+                  <Label fx:id="numPizza" text="Amount of Pizzas:" />
                </children>
             </HBox>
             <ListView fx:id="list" prefHeight="187.0" prefWidth="543.0" />
@@ -33,7 +34,7 @@
                <children>
                   <Label text="Order Total" />
                   <TextField fx:id="total" prefHeight="26.0" prefWidth="228.0" />
-                  <Button mnemonicParsing="false" text="Place Order" />
+                  <Button fx:id="placeButton" mnemonicParsing="false" onAction="#placeOrder" text="Place Order" />
                </children>
             </HBox>
          </children>

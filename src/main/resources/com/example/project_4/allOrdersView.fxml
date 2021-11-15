@@ -10,23 +10,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="415.0" prefWidth="600.0" style="-fx-background-color: #b4ff05;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_4.OrderController">
+<AnchorPane prefHeight="415.0" prefWidth="600.0" style="-fx-background-color: #b4ff05;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project_4.AllOrdersController">
    <children>
       <VBox layoutX="28.0" layoutY="63.0" prefHeight="319.0" prefWidth="543.0" style="-fx-spacing: 10;">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="38.0" prefWidth="543.0" style="-fx-spacing: 20;">
                <children>
                   <Label text="Customer's Phone Number" />
-                  <ComboBox prefHeight="26.0" prefWidth="132.0" />
+                  <ComboBox fx:id="orderBox" onAction="#showChosenOrder" prefHeight="26.0" prefWidth="132.0" />
                   <Label text="Order Total" />
-                  <TextField prefHeight="26.0" prefWidth="120.0" />
+                  <TextField fx:id="orderTotal" prefHeight="26.0" prefWidth="120.0" />
                </children>
             </HBox>
-            <ListView prefHeight="187.0" prefWidth="543.0" />
+            <ListView fx:id="list" prefHeight="187.0" prefWidth="543.0" />
             <HBox alignment="CENTER" prefHeight="38.0" prefWidth="543.0" style="-fx-spacing: 10;">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="137.0" text="Cancel Order" />
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="137.0" text="Export Store Orders" />
+                  <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#cancelOrder" prefHeight="26.0" prefWidth="137.0" text="Cancel Order" />
+                  <Button mnemonicParsing="false" onAction="#exportOrders" prefHeight="26.0" prefWidth="137.0" text="Export Store Orders" />
                </children>
             </HBox>
          </children>

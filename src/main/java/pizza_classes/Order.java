@@ -41,11 +41,13 @@ public class Order {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Phone Number: " + phoneNumber);
+        sb.append("Phone Number: " + phoneNumber + "\n");
         for (Pizza pizza : pizzas) {
-            sb.append("; " + pizza.toString());
+            sb.append(pizza.toString() + "\n");
         }
-        sb.append("; " + "Total: " + getFinalPrice());
+        sb.append("Amount of Pizzas: " + pizzas.size() + "\n");
+        sb.append("Subtotal: $" + getSubtotal() + "\t Sales Tax: $" + getTax() + "\n");
+        sb.append("Total: $" + getFinalPrice() + "\n");
         return sb.toString();
     }
 
@@ -88,5 +90,9 @@ public class Order {
 
     public ArrayList<Pizza> getPizzas() {
         return pizzas;
+    }
+
+    public int size(){
+        return pizzas.size();
     }
 }

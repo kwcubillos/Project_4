@@ -27,10 +27,10 @@ public class StoreOrders {
 
     /**
      * This method removes an order from the list of orders.
-     * @param order The order to be removed.
+     * @param index The order to be removed.
      */
-    public void removeOrder(Order order) {
-        orders.remove(order);
+    public void removeOrder(int index) {
+        orders.remove(index);
     }
 
     /**
@@ -49,18 +49,18 @@ public class StoreOrders {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (Order order : orders) {
-            sb.append(order.toString()).append("\n");
+            sb.append(order.toString() + "\n");
         }
         return sb.toString();
     }
 
     /**
      * This method saves the orders to a file.
-     * @param file The file to save the orders to.
+     *
      */
-    public void export() {
+    public void export(File file) {
         try {
-            FileWriter fw = new FileWriter("orders.txt");
+            FileWriter fw = new FileWriter(file);
             BufferedWriter bw = new BufferedWriter(fw);
             for (Order order : orders) {
                 bw.write(order.toString());
@@ -72,13 +72,29 @@ public class StoreOrders {
         }
     }
 
-    public Order findOrder(String num){
+    public boolean contains(String num){
         for(int i = 0; i < orders.size(); i++){
             if(num.equals(orders.get(i).getPhoneNumber())){
-                return orders.get(i);
+                return true;
             }
         }
 
-        return null;
+        return false;
+    }
+
+    public Order getOrder(int index){
+        return orders.get(index);
+    }
+
+    public ArrayList<String> getPhoneNumbers(){
+        ArrayList<String> numbers = new ArrayList<>();
+        for(int i = 0; i < orders.size(); i++){
+            numbers.add(orders.get(i).getPhoneNumber());
+        }
+        return numbers;
+    }
+
+    public int getSize(){
+        return orders.size();
     }
 }
