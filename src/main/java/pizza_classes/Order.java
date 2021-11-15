@@ -9,6 +9,8 @@ import java.util.ArrayList;
  */
 public class Order {
 
+    /** Length of phone number that is valid **/
+    public static final int PHONE_NUMBER_LENGTH = 10;
     /** The dollar format. **/
     private static final String FORMAT = "##,##0.00";
     /** Formatter that formats a number to the dollar format. **/

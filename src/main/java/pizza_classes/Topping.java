@@ -5,18 +5,6 @@ package pizza_classes;
  * @author Ethan Chang and Kevin Cubillos
  */
 public enum Topping {
-    SAUSAGE("Sausage"), HAM("Ham"), MUSHROOM("Mushroom"), ONION("Onion"), 
-        PEPPERONI("Pepperoni"), PINEAPPLE("Pineapple"), BACON("Bacon");
-
-        private String topping;
-
-        
-        
-        private Topping(String topping){
-            this.topping = topping;
-        }
-
-        public String getTopping(){
-            return topping;
-        }
+    SAUSAGE, HAM, MUSHROOM, ONION,
+        PEPPERONI, PINEAPPLE, BACON, PEPPERS, JALAPENO, SHRIMP
 }

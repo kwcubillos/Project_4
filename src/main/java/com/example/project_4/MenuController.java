@@ -90,7 +90,7 @@ public class MenuController {
      */
     @FXML
     private void showStoreOrders() throws IOException {
-        if(orders.getSize() == 0){
+        if(orders.getSize() == StoreOrders.EMPTY){
             showError("No Orders", "Make sure there are orders placed.");
             return;
         }
@@ -122,7 +122,7 @@ public class MenuController {
      */
     private boolean validNumber(){
         try{
-            if(num == null || num.getText().length() != 10){
+            if(num == null || num.getText().length() != Order.PHONE_NUMBER_LENGTH){
                 showError("Not a number", "Please enter a valid number.");
                 return false;
             }

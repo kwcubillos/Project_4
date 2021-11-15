@@ -14,6 +14,8 @@ public abstract class Pizza {
     protected static final double SIZE_INCREASE_UPCHARGE = 2.00;
     /** Price of an additional topping. **/
     protected static final double ADD_TOPPING_PRICE = 1.49;
+    /** When there are no extra toppings **/
+    protected static final int NO_EXTRA_TOPPINGS = 0;
     /** Max amount of toppings a pizza can have. **/
     private static final int MAX_TOPPINGS = 7;
     /** The list of toppings currently with pizza. **/

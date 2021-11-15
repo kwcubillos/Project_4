@@ -26,7 +26,7 @@ public class HawaiianPizza extends Pizza {
     public double price(){
         double price = HAWAIIAN_INIT_PRICE;
         int extraToppings = toppings.size() - HAWAIIAN_TOPPING_COUNT;
-        if(extraToppings > 0){
+        if(extraToppings > Pizza.NO_EXTRA_TOPPINGS){
             price += extraToppings * ADD_TOPPING_PRICE;
         }
         switch(size){

@@ -10,6 +10,8 @@ import java.util.ArrayList;
 public class StoreOrders {
     /** The list of orders. **/
     private ArrayList<Order> orders;
+    /** Empty list of orders **/
+    public static final int EMPTY = 0;
 
     /**
      * Constructor for the StoreOrders class.

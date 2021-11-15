@@ -20,7 +20,9 @@ import java.util.ArrayList;
  */
 public class AllOrdersController {
 
-    /** The reference to the menu controller to access orders **/
+    /** Index of first order for set up. **/
+    private static final int FIRST_ORDER = 0;
+    /** The reference to the menu controller to access orders. **/
     private MenuController menuController;
     /** ComboBox from GUI. **/
     @FXML
@@ -42,7 +44,7 @@ public class AllOrdersController {
     protected void setUpScreen(MenuController controller){
         menuController = controller;
         orderBox.setItems(FXCollections.observableArrayList(menuController.orders.getPhoneNumbers()));
-        orderBox.getSelectionModel().select(0);
+        orderBox.getSelectionModel().select(FIRST_ORDER);
         showPizzas();
     }
 
@@ -65,7 +67,7 @@ public class AllOrdersController {
      */
     @FXML
     private void showChosenOrder(){
-        if(orderBox.getSelectionModel().getSelectedIndex() >= 0){
+        if(orderBox.getSelectionModel().getSelectedIndex() >= FIRST_ORDER){
             showPizzas();
         }
         else{

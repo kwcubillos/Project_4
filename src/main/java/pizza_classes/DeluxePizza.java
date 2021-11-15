@@ -30,7 +30,7 @@ public class DeluxePizza extends Pizza {
     public double price(){
         double price = DELUXE_INIT_PRICE;
         int extraToppings = toppings.size() - DELUXE_TOPPING_COUNT;
-        if(extraToppings > 0){
+        if(extraToppings > Pizza.NO_EXTRA_TOPPINGS){
             price += extraToppings * ADD_TOPPING_PRICE;
         }
         switch(size){

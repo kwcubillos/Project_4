@@ -26,7 +26,7 @@ public class PepperoniPizza extends Pizza {
     public double price(){
         double price = PEPPERONI_INIT_PRICE;
         int extraToppings = toppings.size() - PEPPERONI_TOPPING_COUNT;
-        if(extraToppings > 0){
+        if(extraToppings > Pizza.NO_EXTRA_TOPPINGS){
             price += extraToppings * ADD_TOPPING_PRICE;
         }
         switch(size){

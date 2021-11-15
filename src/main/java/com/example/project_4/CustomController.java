@@ -72,6 +72,7 @@ public class CustomController{
 
     /**
      * Adds a topping to the pizza and updates price and GUI.
+     * Shows error if max toppings amount has been reached.
      */
     @FXML
     private void addTopping(){
@@ -79,10 +80,16 @@ public class CustomController{
         if(juice == null){
             return;
         }
-        currentPizza.addTopping(juice);
-        notAddedList.getItems().remove(juice);
-        addedList.getItems().add(juice);
-        price.setText(currentPizza.priceFormatted());
+        if(currentPizza.addTopping(juice)){
+            notAddedList.getItems().remove(juice);
+            addedList.getItems().add(juice);
+            price.setText(currentPizza.priceFormatted());
+        }
+        else{
+            menuController.showError("Max Toppings Reached", "Remove a topping to add another");
+        }
+
+
     }
 
     /**
