@@ -9,6 +9,8 @@ import java.util.ArrayList;
  */
 public class Order {
 
+    /** When there are no pizzas in order **/
+    public static final int EMPTY = 0;
     /** Length of phone number that is valid **/
     public static final int PHONE_NUMBER_LENGTH = 10;
     /** The dollar format. **/

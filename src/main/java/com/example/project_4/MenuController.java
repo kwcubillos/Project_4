@@ -23,12 +23,12 @@ import java.io.IOException;
 public class MenuController {
 
     /** The list of orders to be managed. **/
-    protected StoreOrders orders = new StoreOrders();
+    private StoreOrders orders = new StoreOrders();
     /** The current order being handled. **/
-    protected Order currentOrder;
+    private Order currentOrder;
     /** TextField from GUI. **/
     @FXML
-    protected TextField num;
+    private TextField num;
 
     /**
      * Sets up the pizza customization screen with a valid customer phone number.
@@ -133,6 +133,32 @@ public class MenuController {
             return false;
         }
         return true;
+    }
+
+    /**
+     * Get reference to current order.
+     * @return current order
+     */
+    public Order getCurrentOrder(){
+        return currentOrder;
+    }
+
+    /**
+     * Add an order to the store orders.
+     * @param order order to be added
+     */
+    public void addToOrders(Order order){
+        orders.addOrder(order);
+        currentOrder = null;
+        num.setText("");
+    }
+
+    /**
+     * Get reference to store orders.
+     * @return store orders
+     */
+    public StoreOrders getStoreOrders(){
+        return orders;
     }
 
 }

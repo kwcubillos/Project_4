@@ -10,6 +10,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import pizza_classes.Order;
 import pizza_classes.Pizza;
+import pizza_classes.StoreOrders;
+
 import java.io.File;
 import java.util.ArrayList;
 
@@ -24,6 +26,8 @@ public class AllOrdersController {
     private static final int FIRST_ORDER = 0;
     /** The reference to the menu controller to access orders. **/
     private MenuController menuController;
+    /** Store orders from menu controller **/
+    private StoreOrders orders;
     /** ComboBox from GUI. **/
     @FXML
     private ComboBox orderBox;
@@ -43,7 +47,8 @@ public class AllOrdersController {
      */
     protected void setUpScreen(MenuController controller){
         menuController = controller;
-        orderBox.setItems(FXCollections.observableArrayList(menuController.orders.getPhoneNumbers()));
+        orders = menuController.getStoreOrders();
+        orderBox.setItems(FXCollections.observableArrayList(orders.getPhoneNumbers()));
         orderBox.getSelectionModel().select(FIRST_ORDER);
         showPizzas();
     }
@@ -52,7 +57,7 @@ public class AllOrdersController {
      * Populates the ListView with all pizzas from selected order.
      */
     private void showPizzas(){
-        Order order = menuController.orders.getOrder(orderBox.getSelectionModel().getSelectedIndex());
+        Order order = orders.getOrder(orderBox.getSelectionModel().getSelectedIndex());
         ArrayList<String> pizzas = new ArrayList<>();
         for(Pizza pizza : order.getPizzas()){
             pizzas.add(pizza.toString());
@@ -82,7 +87,7 @@ public class AllOrdersController {
     private void cancelOrder(){
         int index = orderBox.getSelectionModel().getSelectedIndex();
         orderBox.getItems().remove(index);
-        menuController.orders.removeOrder(index);
+        orders.removeOrder(index);
     }
 
     /**
@@ -96,7 +101,7 @@ public class AllOrdersController {
                 new FileChooser.ExtensionFilter("All Files", "*.*"));
         Stage stage = new Stage();
         File targetFile = chooser.showSaveDialog(stage);
-        menuController.orders.export(targetFile);
+        orders.export(targetFile);
     }
 
 

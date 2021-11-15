@@ -20,6 +20,8 @@ public class OrderController {
 
     /** The reference to the menu controller to access current order **/
     private MenuController menuController;
+    /** Current order **/
+    private Order currentOrder;
     /** TextFields from GUI **/
     @FXML
     private TextField num, subtotal, total, tax;
@@ -39,8 +41,9 @@ public class OrderController {
      */
     protected void setUpScreen(MenuController controller){
         menuController = controller;
-        num.setText(menuController.currentOrder.getPhoneNumber());
-        numPizza.setText("Amount of Pizzas: " + menuController.currentOrder.size());
+        currentOrder = menuController.getCurrentOrder();
+        num.setText(currentOrder.getPhoneNumber());
+        numPizza.setText("Amount of Pizzas: " + currentOrder.size());
         listPizzas();
         updatePrice();
     }
@@ -49,9 +52,8 @@ public class OrderController {
      * Populates the ListView with pizza information.
      */
     private void listPizzas(){
-        Order order = menuController.currentOrder;
         ArrayList<String> pizzas = new ArrayList<>();
-        for(Pizza pizza : order.getPizzas()){
+        for(Pizza pizza : currentOrder.getPizzas()){
             pizzas.add(pizza.toString());
         }
 
@@ -62,9 +64,9 @@ public class OrderController {
      * Updates the price of current order.
      */
     private void updatePrice(){
-        subtotal.setText("$" + menuController.currentOrder.getSubtotal());
-        tax.setText("$" + menuController.currentOrder.getTax());
-        total.setText("$" + menuController.currentOrder.getFinalPrice());
+        subtotal.setText("$" + currentOrder.getSubtotal());
+        tax.setText("$" + currentOrder.getTax());
+        total.setText("$" + currentOrder.getFinalPrice());
     }
 
     /**
@@ -74,13 +76,12 @@ public class OrderController {
     private void removeSelectedPizza(){
         int selectedIndex = list.getSelectionModel().getSelectedIndex();
         list.getItems().remove(selectedIndex);
-        menuController.currentOrder.removePizza(selectedIndex);
-        numPizza.setText("Amount of Pizzas: " + menuController.currentOrder.size());
+        currentOrder.removePizza(selectedIndex);
+        numPizza.setText("Amount of Pizzas: " + currentOrder.size());
         updatePrice();
         if(list.getSelectionModel().getSelectedIndex() == -1){
             ((Stage) placeButton.getScene().getWindow()).close();
-            menuController.currentOrder = null;
-            menuController.num.setText("");
+            currentOrder = null;
         }
     }
 
@@ -89,13 +90,11 @@ public class OrderController {
      */
     @FXML
     private void placeOrder(){
-        if(menuController.currentOrder.getPizzas().size() == 0){
+        if(currentOrder.getPizzas().size() == Order.EMPTY){
             menuController.showError("There are no pizzas", "Add pizzas to place an order.");
             return;
         }
-        menuController.orders.addOrder(menuController.currentOrder);
-        menuController.currentOrder = null;
-        menuController.num.setText("");
+        menuController.addToOrders(currentOrder);
         ((Stage) placeButton.getScene().getWindow()).close();
     }
 }

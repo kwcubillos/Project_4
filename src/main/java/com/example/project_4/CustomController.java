@@ -124,7 +124,7 @@ public class CustomController{
      */
     @FXML
     private void addToOrder(){
-        menuController.currentOrder.addPizza(currentPizza);
+        menuController.getCurrentOrder().addPizza(currentPizza);
         Stage stage = (Stage) orderButton.getScene().getWindow();
         stage.close();
     }
