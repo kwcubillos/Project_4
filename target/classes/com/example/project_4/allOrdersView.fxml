@@ -19,7 +19,7 @@
                   <Label text="Customer's Phone Number" />
                   <ComboBox fx:id="orderBox" onAction="#showChosenOrder" prefHeight="26.0" prefWidth="132.0" />
                   <Label text="Order Total" />
-                  <TextField fx:id="orderTotal" prefHeight="26.0" prefWidth="120.0" />
+                  <TextField fx:id="orderTotal" editable="false" prefHeight="26.0" prefWidth="120.0" />
                </children>
             </HBox>
             <ListView fx:id="list" prefHeight="187.0" prefWidth="543.0" />
